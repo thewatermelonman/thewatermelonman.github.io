@@ -114,8 +114,8 @@
             </div>
         </div>
         <div class="dropup">
-            <button class="dropbtn">Color</button>
-            <div class="dropup-content middlebtn">
+            <button class="dropbtn middlebtn">Color</button>
+            <div class="dropup-content">
                 <button style="background-color: rgb(190, 142, 253);" class="colorbtn" value="0"></button>
                 <button style="background-color: rgb(214, 69, 69);" class="colorbtn" value="1"></button>
                 <button style="background-color: rgb(180, 189, 54);" class="colorbtn" value="2"></button>
@@ -123,8 +123,8 @@
             </div>
         </div>
         <div class="dropup">
-            <button class="dropbtn">Texture</button>
-            <div class="dropup-content middlebtn">
+            <button class="dropbtn middlebtn">Texture</button>
+            <div class="dropup-content">
                 <button style="background-color: rgb(190, 142, 253);" class="colorbtn" value="0"></button>
                 <button style="background-color: rgb(214, 69, 69);" class="colorbtn" value="1"></button>
                 <button style="background-color: rgb(180, 189, 54);" class="colorbtn" value="2"></button>
@@ -142,15 +142,7 @@
         </div>
     </div>
     <script type="module" src="scene.js"></script>
-    <script type="module">
-        import { setOption_Color } from "./scene.js";
-        let elements = document.getElementsByClassName("colorbtn");
-        Array.from(elements).forEach((element) => element.addEventListener('click', (event) => {
-            let index = event.target.value;
-            console.log(event.target.value);
-            setOption_Color(index);
-        }));
-    </script>
+    <script type="module" src="gui.js"></script>
 </body>
 
 </html>
