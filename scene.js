@@ -2,12 +2,17 @@
 import * as THREE from 'three';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 import { Sky } from 'three/addons/objects/Sky.js';
+import { EffectComposer } from 'three/addons/postprocessing/EffectComposer.js';
+import { RenderPass } from 'three/addons/postprocessing/RenderPass.js';
+import { BokehPass } from 'three/addons/postprocessing/BokehPass.js';
+import { OutputPass } from 'three/addons/postprocessing/OutputPass.js';
 
 let container;
 let camera, scene, renderer;
 let controls, sun ;
 let plane, plane_filled;
 let plane_material2;
+const postprocessing = {};
 
 let Options = {
     colors: [
@@ -27,7 +32,7 @@ function init() {
     //
 
     renderer = new THREE.WebGLRenderer({antialias: true});
-    renderer.setPixelRatio( window.devicePixelRatio );
+    renderer.setPixelRatio( window.devicePixelRatio )
     renderer.setSize( window.innerWidth, window.innerHeight );
     renderer.setAnimationLoop( animate );
     renderer.toneMapping = THREE.ACESFilmicToneMapping;
@@ -136,6 +141,11 @@ function init() {
     controls.update();
 
 
+    initPostprocessing();
+    postprocessing.bokeh.uniforms[ 'focus' ].value = 200;
+    postprocessing.bokeh.uniforms['aperture'].value = 5 * 0.00001;
+    postprocessing.bokeh.uniforms['maxblur'].value = 0.01;
+
     window.addEventListener( 'resize', onWindowResize );
 
 }
@@ -146,6 +156,7 @@ function onWindowResize() {
     camera.updateProjectionMatrix();
 
     renderer.setSize( window.innerWidth, window.innerHeight );
+    postprocessing.composer.setSize( width, height );
 
 }
 
@@ -159,7 +170,7 @@ function render() {
 
     const time = performance.now() * 0.001;
     plane_material2.uniforms.time.value = time;
-    renderer.render( scene, camera );
+    postprocessing.composer.render( 0.1 );
 
 }
 
@@ -187,4 +198,29 @@ function setupAttributes(geometry) {
 export function setOption_Color(colorIndex) {
     plane_material2.uniforms.color_1.value = Options.colors[colorIndex];
     console.log(Options.colors[colorIndex]);
+}
+
+
+
+function initPostprocessing() {
+
+    const renderPass = new RenderPass(scene, camera);
+
+    const bokehPass = new BokehPass(scene, camera, {
+        focus: 1.0,
+        aperture: 0.025,
+        maxblur: 0.01
+    });
+
+    const outputPass = new OutputPass();
+
+    const composer = new EffectComposer(renderer);
+
+    composer.addPass(renderPass);
+    composer.addPass(bokehPass);
+    composer.addPass(outputPass);
+
+    postprocessing.composer = composer;
+    postprocessing.bokeh = bokehPass;
+
 }
