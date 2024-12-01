@@ -1,11 +1,28 @@
-Alpine.data('settings', () => ({
-    color: null,
-    shape: null,
-    texture: null,
-    season: null,
-    init() {
-      this.color = 1;
-    },
-}))
+import * as Scene from './scene.js';
+Alpine.store('settings', {
+        color: null,
+        shape: null,
+        texture: null,
+        season: null,
 
-console.log(Alpine.data.settings);
+        setShape(value) {
+            this.shape = value;
+            console.log("test");
+        },
+
+        setColor(value) {
+            this.color = value;
+            Scene.setOption_Color(value);
+        },
+
+        setTexture(value) {
+            this.texture = value;
+        },
+
+        setSeason(value) {
+            this.season = value;
+        },
+
+});
+ 
+//Alpine.start();

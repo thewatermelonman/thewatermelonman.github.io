@@ -22,7 +22,7 @@ let Options = {
                 new THREE.Vector3(0.2, 0.6, 0.6),
                 new THREE.Vector3(0.1, 0.1, 0.5),
                 new THREE.Vector3(0.4, 0.1, 0.8)
-    ]
+    ],
 };
 
 init();
@@ -158,7 +158,7 @@ function onWindowResize() {
     camera.updateProjectionMatrix();
 
     renderer.setSize( window.innerWidth, window.innerHeight );
-    postprocessing.composer.setSize( width, height );
+    postprocessing.composer.setSize( window.innerWidth, window.innerHeight );
 
 }
 
@@ -201,8 +201,6 @@ export function setOption_Color(colorIndex) {
     plane_material2.uniforms.color_1.value = Options.colors[colorIndex];
     console.log(Options.colors[colorIndex]);
 }
-
-
 
 function initPostprocessing() {
 

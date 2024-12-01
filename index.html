@@ -21,44 +21,43 @@
     </script>
   <script type="module" src="gui.js"></script>
   <div class="toolbar_container">
-
-    <div x-data="{ open: false}" @mouseleave="open = false" class="dropup">
-      <button @mouseover="open = true" class="dropbtn leftbtn">Shape</button>
-      <div x-show="open" class="dropup-content">
-        <button @click="shape = 0" class="colorbtn"></button>
-        <button @click="shape = 1" class="colorbtn"></button>
-        <button @click="shape = 2" class="colorbtn"></button>
-        <button @click="shape = 3" class="colorbtn"></button>
+    <div x-data="{ open: false}" @click.outside="open = false" @mouseleave="open = false" class="dropup">
+      <button @click="open = true" @mouseover="open = true" class="dropbtn leftbtn">Shape</button>
+      <div x-show="open" class="dropup-content" x-transition>
+        <button @click="$store.settings.setShape(0); open = false" class="colorbtn"></button>
+        <button @click="$store.settings.setShape(1); open = false" class="colorbtn"></button>
+        <button @click="$store.settings.setShape(2); open = false" class="colorbtn"></button>
+        <button @click="$store.settings.shape(3); open = false" class="colorbtn"></button>
       </div>
     </div>
 
-    <div x-data="{ open: false}" @mouseleave="open = false" class="dropup">
-      <button @mouseover="open = true" class="dropbtn middlebtn">Shape</button>
-      <div x-show="open" class="dropup-content">
-        <button @click="color = 0" style="background-color: rgb(190, 142, 253);" class="colorbtn"></button>
-        <button @click="color = 1" style="background-color: rgb(214, 69, 69);" class="colorbtn"></button>
-        <button @click="color = 2" style="background-color: rgb(180, 189, 54);" class="colorbtn"></button>
-        <button @click="color = 3" style="background-color: rgb(40, 112, 88);" class="colorbtn"></button>
+    <div x-data="{ open: false}" @click.outside="open = false" @mouseleave="open = false" class="dropup">
+      <button @click="open = true" @mouseover="open = true" class="dropbtn middlebtn">Shape</button>
+      <div x-show="open" class="dropup-content" x-transition>
+        <button @click="$store.settings.setColor(0); open = false" style="background-color: rgb(190, 142, 253);" class="colorbtn"></button>
+        <button @click="$store.settings.setColor(1); open = false" style="background-color: rgb(214, 69, 69);" class="colorbtn"></button>
+        <button @click="$store.settings.setColor(2); open = false" style="background-color: rgb(180, 189, 54);" class="colorbtn"></button>
+        <button @click="$store.settings.setColor(3); open = false" style="background-color: rgb(40, 112, 88);" class="colorbtn"></button>
       </div>
     </div>
 
-    <div x-data="{ open: false}" @mouseleave="open = false" class="dropup">
-      <button @mouseover="open = true" class="dropbtn middlebtn">Shape</button>
-      <div x-show="open" class="dropup-content">
-        <button @click="texture = 0" class="colorbtn"></button>
-        <button @click="texture = 1" class="colorbtn"></button>
-        <button @click="texture = 2" class="colorbtn"></button>
-        <button @click="texture = 3" class="colorbtn"></button>
+    <div x-data="{ open: false}" @click.outside="open = false" @mouseleave="open = false" class="dropup">
+      <button @click="open = true" @mouseover="open = true" class="dropbtn middlebtn">Shape</button>
+      <div x-show="open" class="dropup-content" x-transition>
+        <button @click="$store.settings.setTexture(0); open = false" class="colorbtn"></button>
+        <button @click="$store.settings.setTexture(1); open = false" class="colorbtn"></button>
+        <button @click="$store.settings.setTexture(2); open = false" class="colorbtn"></button>
+        <button @click="$store.settings.setTexture(3); open = false" class="colorbtn"></button>
       </div>
     </div>
 
-    <div x-data="{ open: false}" @mouseleave="open = false" class="dropup">
-      <button @mouseover="open = true" class="dropbtn rightbtn">Shape</button>
-      <div x-show="open" class="dropup-content">
-        <button @click="season = 0" class="colorbtn"></button>
-        <button @click="season = 1" class="colorbtn"></button>
-        <button @click="season = 2" class="colorbtn"></button>
-        <button @click="season = 3" class="colorbtn"></button>
+    <div x-data="{ open: false}" @click.outside="open = false" @mouseleave="open = false" class="dropup">
+      <button @click="open = true" @mouseover="open = true" class="dropbtn rightbtn">Shape</button>
+      <div x-show="open" class="dropup-content" x-transition :class="open ? 'transition-effect' : ''">
+        <button @click="$store.settings.setSeason(0); open = false" class="colorbtn"></button>
+        <button @click="$store.settings.setSeason(1); open = false" class="colorbtn"></button>
+        <button @click="$store.settings.setSeason(2); open = false" class="colorbtn"></button>
+        <button @click="$store.settings.setSeason(3); open = false" class="colorbtn"></button>
       </div>
     </div>
 
