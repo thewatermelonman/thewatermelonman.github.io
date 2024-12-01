@@ -61,7 +61,6 @@ html, body {
 
 /* Dropup content (Hidden by Default) */
 .dropup-content {
-  display: none;
   position: absolute;
   bottom: 50px;
   background-color: transparent;
@@ -80,21 +79,4 @@ html, body {
   width: 100%;
   border-style: none;
   border-radius: 5px;
-}
-
-/* Change color of dropup links on hover */
-.dropup-content button:hover, .dropup-content button:active {
-  border: solid;
-  border-radius: 5px;
-  border-color: aliceblue;
-}
-
-/* Show the dropup menu on hover */
-.dropup:hover .dropup-content, .dropup:active .dropup-content{
-  display: block;
-}
-
-/* Change the background color of the dropup button when the dropup content is shown */
-.dropup:hover .dropbtn {
-  background-color: #34263b;
 }

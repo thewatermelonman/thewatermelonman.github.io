@@ -6,6 +6,8 @@ import { EffectComposer } from 'three/addons/postprocessing/EffectComposer.js';
 import { RenderPass } from 'three/addons/postprocessing/RenderPass.js';
 import { BokehPass } from 'three/addons/postprocessing/BokehPass.js';
 import { OutputPass } from 'three/addons/postprocessing/OutputPass.js';
+import * as VertexShader from './shaders/displacement_vert.js';
+import * as FragmentShader from './shaders/wireframe_frag.js';
 
 let container;
 let camera, scene, renderer;
@@ -71,8 +73,8 @@ function init() {
             'color_1': { value: new THREE.Vector3(0.7, 0.63, 0.8) },
             'color_2': { value: new THREE.Vector3(1.0, 1.0, 1.0) },
         },
-        vertexShader: document.getElementById('vertexShader').textContent,
-        fragmentShader: document.getElementById('fragmentShader').textContent,
+        vertexShader: VertexShader.shader_text, 
+        fragmentShader: FragmentShader.shader_text,
         side: THREE.DoubleSide,
         alphaToCoverage: true // only works when WebGLRenderer's "antialias" is set to "true"
 
