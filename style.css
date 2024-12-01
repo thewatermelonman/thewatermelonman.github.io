@@ -4,10 +4,12 @@
     --highlight-color: #fff1e2;
     --background-color: #F5F5FA;
 
-    --color-a: #e74c3c;
-    --color-b: #8e44ad;
-    --color-c: #16a085;
-    --color-d: #f39c12;
+    --color-a: #a37baa;
+    --color-b: #6e81ff;
+    --color-c: #48a592;
+    --color-d: #f17c4d;
+
+    --active-color: var(--color-a);
 }
 
 body {
@@ -34,7 +36,8 @@ html, body {
 }
 /* Dropup Button */
 .dropbtn {
-  background-color: #a696c0;
+  background-color: var(--active-color);
+  /*filter: brightness(1.200);*/
   color: white;
   padding: 16px;
   font-size: 16px;
@@ -89,4 +92,8 @@ html, body {
 
 button:hover {
   filter: brightness(1.200);
+}
+
+.color0 {
+  background-color: var(--color-a);
 }

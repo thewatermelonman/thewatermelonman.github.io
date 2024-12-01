@@ -34,10 +34,10 @@
     <div x-data="{ open: false}" @click.outside="open = false" @mouseleave="open = false" class="dropup">
       <button @click="open = true" @mouseover="open = true" class="dropbtn middlebtn">Shape</button>
       <div x-show="open" class="dropup-content" x-transition>
-        <button @click="$store.settings.setColor(0); open = false" style="background-color: rgb(190, 142, 253);" class="colorbtn"></button>
-        <button @click="$store.settings.setColor(1); open = false" style="background-color: rgb(214, 69, 69);" class="colorbtn"></button>
-        <button @click="$store.settings.setColor(2); open = false" style="background-color: rgb(180, 189, 54);" class="colorbtn"></button>
-        <button @click="$store.settings.setColor(3); open = false" style="background-color: rgb(40, 112, 88);" class="colorbtn"></button>
+        <button @click="$store.settings.setColor(0); open = false" style="background-color: var(--color-a)" class="colorbtn"></button>
+        <button @click="$store.settings.setColor(1); open = false" style="background-color: var(--color-b)" class="colorbtn"></button>
+        <button @click="$store.settings.setColor(2); open = false" style="background-color: var(--color-c)" class="colorbtn"></button>
+        <button @click="$store.settings.setColor(3); open = false" style="background-color: var(--color-d)" class="colorbtn"></button>
       </div>
     </div>
 

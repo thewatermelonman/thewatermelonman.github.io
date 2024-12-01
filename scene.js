@@ -1,4 +1,3 @@
-
 import * as THREE from 'three';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 import { Sky } from 'three/addons/objects/Sky.js';
@@ -16,12 +15,14 @@ let plane, plane_filled;
 let plane_material2;
 const postprocessing = {};
 
+let hex_val = (hex) => "0x" + getComputedStyle(document.body).getPropertyValue(hex).substring(1);
+console.log(hex_val('--color-b'));
 let Options = {
     colors: [
-                new THREE.Vector3(0.1, 0.1, 0.2),
-                new THREE.Vector3(0.2, 0.6, 0.6),
-                new THREE.Vector3(0.1, 0.1, 0.5),
-                new THREE.Vector3(0.4, 0.1, 0.8)
+                new THREE.Color().setHex(parseInt(hex_val('--color-a'))),
+                new THREE.Color().setHex(parseInt(hex_val('--color-b'))),
+                new THREE.Color().setHex(parseInt(hex_val('--color-c'))),
+                new THREE.Color().setHex(parseInt(hex_val('--color-d'))),
     ],
 };
 
@@ -70,7 +71,7 @@ function init() {
         uniforms: { 
             'thickness': { value: 1.4 },
             'time': { value: 0.0 }, 
-            'color_1': { value: new THREE.Vector3(0.7, 0.63, 0.8) },
+            'color_1': { value: Options.colors[0]},
             'color_2': { value: new THREE.Vector3(1.0, 1.0, 1.0) },
         },
         vertexShader: VertexShader.shader_text, 
@@ -85,7 +86,7 @@ function init() {
     plane_filled.rotation.x = Math.PI / 2;
     plane_filled.position.y = -0.01
     scene.add(plane);
-    scene.add(plane_filled);
+    //scene.add(plane_filled);
 
 
     // Skybox
@@ -145,7 +146,7 @@ function init() {
 
     initPostprocessing();
     postprocessing.bokeh.uniforms[ 'focus' ].value = 200;
-    postprocessing.bokeh.uniforms['aperture'].value = 5 * 0.00001;
+    postprocessing.bokeh.uniforms['aperture'].value = 5 * 0.000001;
     postprocessing.bokeh.uniforms['maxblur'].value = 0.01;
 
     window.addEventListener( 'resize', onWindowResize );
@@ -170,7 +171,7 @@ function animate() {
 
 function render() {
 
-    const time = performance.now() * 0.001;
+    const time = performance.now() * 0.003;
     plane_material2.uniforms.time.value = time;
     postprocessing.composer.render( 0.1 );
 
@@ -199,7 +200,6 @@ function setupAttributes(geometry) {
 
 export function setOption_Color(colorIndex) {
     plane_material2.uniforms.color_1.value = Options.colors[colorIndex];
-    console.log(Options.colors[colorIndex]);
 }
 
 function initPostprocessing() {

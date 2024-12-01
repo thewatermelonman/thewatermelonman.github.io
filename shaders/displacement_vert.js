@@ -51,8 +51,9 @@ export const shader_text = `
 
             vCenter = center;
             vec3 displacedPosition = position;
-            float displacement = pNoise(position.xy * 0.1 + vec2(time * 2.0, time * 2.0), 1);
-            displacedPosition.z += displacement * 200.0 + 6.0;
+            float displacement = pNoise(position.xy * 0.1 + vec2(time * 2.0, -time * 2.0), 1);
+            float displacement_2 = pNoise(position.xy * 0.05 + vec2(-time * 2.0, -time * 2.0), 1);
+            displacedPosition.z += displacement * 160.0 - displacement_2 * 100.0 + 6.0;
 
             // Apply transformations
             gl_Position = projectionMatrix * modelViewMatrix * vec4(displacedPosition, 1.0);
